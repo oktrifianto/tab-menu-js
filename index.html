@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Tab Menu</title>
+  <style>
+    .tab-button {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #eee;
+    }
+    
+    .tab-button button {
+      float: left;
+      border: none;
+      outline: none;
+      padding: 14px 16px;
+      font-size: 1rem;
+      cursor:pointer;
+    }
+    
+    .tab-button button:hover {
+      background-color: #666;
+      color: #fff;
+    }
+    
+    .tab-button button.active {
+      background-color: #777;
+    }
+    
+    .tab-content {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="tab-button">
+    <button class="tab-links" onclick="openCountry(event, 'Singapore')" id="defaultClicked">Singapore</button>
+    <button class="tab-links" onclick="openCountry(event, 'Indonesia')">Indonesia</button>
+    <button class="tab-links" onclick="openCountry(event, 'Malaysia')">Malaysia</button>
+  </div>
+  
+  <div id="Singapore" class="tab-content">
+    <h2>Singapore</h2>
+    <p>Singapore is modern country</p>
+  </div>
+  
+  <div id="Indonesia" class="tab-content">
+    <h2>Indonesia</h2>
+    <p>Indonesia is beautiful country</p>
+  </div>
+  
+  <div id="Malaysia" class="tab-content">
+    <h2>Malaysia</h2>
+    <p>Malaysia is nice country</p>
+  </div>
+  
+  <script>
+    function openCountry(ev, countryName) {
+      var i, tabContent, tabLinks;
+      
+      tabContent = document.getElementsByClassName('tab-content');
+      for (i = 0; i < tabContent.length;i++){
+        tabContent[i].style.display = "none";
+      }
+      
+      tabLinks = document.getElementsByClassName('tab-links');
+      for (i = 0; i < tabLinks.length;i++) {
+        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+      }
+      
+      document.getElementById(countryName).style.display = "block";
+      
+      ev.currentTarget.className += " active";
+      
+    }
+    
+    // default clicked by ID
+    document.getElementById("defaultClicked").click();
+  </script>
+</body>
+</html>
